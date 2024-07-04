@@ -51,4 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         window.location.href = '/';
     });
+
+    // Animaciones al hacer scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    function checkFade() {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+
+            if (elementTop < window.innerHeight && elementBottom > 0) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFade);
+    window.addEventListener('resize', checkFade);
+    checkFade(); // Ejecutar una vez al cargar la página
 });
